@@ -2,6 +2,7 @@ import { HttpClient } from '@angular/common/http';
 import { Injectable } from '@angular/core';
 import { Observable } from 'rxjs';
 import { PokemonDetailDto } from './pokemonDetailDto';
+import { map } from 'rxjs/operators';
 
 @Injectable({
   providedIn: 'root'
@@ -25,4 +26,9 @@ export class PokemonService {
     return this.http.get<PokemonDetailDto>(`${this.apiUrl}${id}`);
   }
 
+  getPokemonsByType(typeName: string): Observable<PokemonDetailDto[]> {
+    return this.http.get<any>(`https://pokeapi.co/api/v2/type/${typeName}`).pipe(
+      map(response => response.pokemon.map((p: any) => p.pokemon))
+    );
+  }
 }

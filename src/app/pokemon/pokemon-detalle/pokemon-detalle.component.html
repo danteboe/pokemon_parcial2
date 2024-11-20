@@ -1,0 +1,41 @@
+<div class="container-fluid">
+  <p class="h3 p-3">{{ pokemonDetail.name }}</p>
+  <div class="row">
+    <div class="col-2">
+      <div class="thumb">
+        <img
+          class="img-fluid"
+          src="{{ pokemonDetail.sprites.front_default }}"
+          alt="{{ pokemonDetail.name }}"
+        />
+      </div>
+    </div>
+    <div class="col">
+      <dl>
+        <dt>Tipos</dt>
+        <dd
+          class="caption"
+          *ngFor="let type of pokemonDetail.types"
+        >
+          <a [routerLink]="['/types/list', type.type.name]">{{type.type.name}}</a>
+        </dd>
+        <dt>Name</dt>
+        <dd>{{ pokemonDetail.name }}</dd>
+        <dt>Height</dt>
+        <dd>{{ pokemonDetail.height }}</dd>
+        <hr />
+        <dt>Weight</dt>
+        <dd>{{ pokemonDetail.weight }}</dd>
+        <hr />
+        <dt>Abilities</dt>
+        <dd
+          class="caption"
+          *ngFor="let ability of pokemonDetail.abilities"
+        >
+          {{ability.ability.name}}
+        </dd>
+        <hr />
+      </dl>
+    </div>
+  </div>
+</div>
